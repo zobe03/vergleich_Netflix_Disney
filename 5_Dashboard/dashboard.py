@@ -556,7 +556,7 @@ def update_timeline(selected_platform, selected_type):
     Output('choropleth-map-disney', 'figure'),
     [Input('country-dropdown', 'value')]
 )
-def update_country_dropdown(selected_country):
+def update_dropdown(selected_country):
     fig4_netflix_updated = fig4_netflix
     fig4_disney_updated = fig4_disney
 
@@ -630,8 +630,8 @@ def update_country_dropdown(selected_country):
                 autocolorscale=False,
                 marker_line_color='darkgrey',  
                 marker_line_width=1, 
-                text=[f"Total count of content in {selected_country}: {counts_netflix[0]}<br>{z} contant was co-produced with {location}" for location, count, z in zip(locations_netflix, counts_netflix, counts_netflix)],
-                hoverinfo='text'  
+                text=filtered_countries_counts_netflix.index,  
+                hoverinfo='location+z',  
             )))
             fig4_netflix_updated.update_layout(
                 title=f'Netflix Content in {selected_country} & associated countries',
@@ -702,7 +702,7 @@ def update_country_dropdown(selected_country):
             )
         else:
             filtered_countries_counts_disney = countries_counts_disney[countries_counts_disney.index == selected_country]
-
+            
             fig4_disney_updated = go.Figure((go.Choropleth(
                 locationmode='country names',
                 locations=filtered_countries_counts_disney.index,  
@@ -713,8 +713,8 @@ def update_country_dropdown(selected_country):
                 autocolorscale=False,
                 marker_line_color='darkgrey',  
                 marker_line_width=1, 
-                text=[f"Total count of content in {selected_country}: {disney_counts[0]}<br>{z} contant was co-produced with {location}" for location, count, z in zip(disney_locations, disney_counts, disney_counts)],
-                hoverinfo='text'  
+                text=filtered_countries_counts_disney.index,  
+                hoverinfo='location+z',   
             )))
             fig4_disney_updated.update_layout(
                 title=f'Disney+ Content in {selected_country} & associated countries',
