@@ -587,20 +587,20 @@ def update_country_dropdown(selected_country):
             associated_countries_counts_netflix = associated_countries_netflix.explode().value_counts()
 
             # Markiere das ausgewählte Land und die verbundenen Länder auf der Karte
-            locations = [selected_country] + associated_countries_counts_netflix.index.tolist()
-            counts = [filtered_countries_counts_netflix[selected_country]] + associated_countries_counts_netflix.tolist()
+            locations_netflix = [selected_country] + associated_countries_counts_netflix.index.tolist()
+            counts_netflix = [filtered_countries_counts_netflix[selected_country]] + associated_countries_counts_netflix.tolist()
 
             fig4_netflix_updated.add_trace(go.Choropleth(
                 locationmode='country names',
-                locations=locations,
-                z=counts,
+                locations=locations_netflix,
+                z=counts_netflix,
                 zmin=0,
                 zmax=3500,
                 colorscale=colorscale_netflix,
                 autocolorscale=False,
                 marker_line_color='darkgrey',
                 marker_line_width=1,
-                text=[f"Total count of content in {selected_country}: {counts[0]}<br>{z} contant was co-produced with {location}" for location, count, z in zip(locations, counts, counts)],
+                text=[f"Total count of content in {selected_country}: {counts_netflix[0]}<br>{z} contant was co-produced with {location}" for location, count, z in zip(locations_netflix, counts_netflix, counts_netflix)],
                 hoverinfo='text'
             ))
 
@@ -630,7 +630,7 @@ def update_country_dropdown(selected_country):
                 autocolorscale=False,
                 marker_line_color='darkgrey',  
                 marker_line_width=1, 
-                text=[f"Total count of content in {selected_country}: {counts[0]}<br>{z} contant was co-produced with {location}" for location, count, z in zip(locations, counts, counts)],
+                text=[f"Total count of content in {selected_country}: {counts_netflix[0]}<br>{z} contant was co-produced with {location}" for location, count, z in zip(locations_netflix, counts_netflix, counts_netflix)],
                 hoverinfo='text'  
             )))
             fig4_netflix_updated.update_layout(
@@ -646,6 +646,7 @@ def update_country_dropdown(selected_country):
                 ),
             )
 
+    
         if selected_country in countries_counts_disney.index:
             # Filtern der Daten für Disney+
             filtered_countries_counts_disney = countries_counts_disney[countries_counts_disney.index == selected_country]
@@ -660,8 +661,8 @@ def update_country_dropdown(selected_country):
                 autocolorscale=False,
                 marker_line_color='darkgrey',  
                 marker_line_width=1, 
-                text=[f"Total count of content in {selected_country}: {counts[0]}<br>{z} contant was co-produced with {location}" for location, count, z in zip(locations, counts, counts)],
-                hoverinfo='text'  
+                text=filtered_countries_counts_disney.index,  
+                hoverinfo='location+z', 
             )))
             # Markiere alle Länder, die mit dem ausgewählten Land verbunden sind, auf der Karte als Scatter Plot
         
@@ -682,7 +683,7 @@ def update_country_dropdown(selected_country):
                 autocolorscale=False,
                 marker_line_color='darkgrey',
                 marker_line_width=1,
-                text=[f"Total count of content in {selected_country}: {counts[0]}<br>{z} contant was co-produced with {location}" for location, count, z in zip(locations, counts, counts)],
+                text=[f"Total count of content in {selected_country}: {disney_counts[0]}<br>{z} contant was co-produced with {location}" for location, count, z in zip(disney_locations, disney_counts, disney_counts)],
                 hoverinfo='text'
             ))
             fig4_disney_updated.update_layout(
@@ -712,7 +713,7 @@ def update_country_dropdown(selected_country):
                 autocolorscale=False,
                 marker_line_color='darkgrey',  
                 marker_line_width=1, 
-                text=[f"Total count of content in {selected_country}: {counts[0]}<br>{z} contant was co-produced with {location}" for location, count, z in zip(locations, counts, counts)],
+                text=[f"Total count of content in {selected_country}: {disney_counts[0]}<br>{z} contant was co-produced with {location}" for location, count, z in zip(disney_locations, disney_counts, disney_counts)],
                 hoverinfo='text'  
             )))
             fig4_disney_updated.update_layout(
