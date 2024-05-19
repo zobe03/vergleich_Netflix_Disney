@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netflix & Disney Animation</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000; /* Schwarzer Hintergrund */
+  }
+  #netflix-logo {
+    width: 400px; /* Breite des SVG-Elements erhöhen */
+    height: 400px; /* Höhe des SVG-Elements erhöhen */
+  }
+  .line {
+    stroke: red; /* Farbe anpassen */
+    stroke-width: 130; /* Breite anpassen */
+    fill: transparent;
+    stroke-dasharray: 0;
+    opacity: 0; /* Linie zu Beginn unsichtbar machen */
+  }
+
+  #disney-logo {
+    width: 400px;
+    height: 200px;
+    opacity: center;
+    animation: appear 5s forwards;
+  }
+  @keyframes appear{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+  }
+  .shooting-star {
+    stroke: #1C39BB; /* Persian Blue */
+    fill: transparent;
+    stroke-dasharray: 1000; /* Gesamtlänge der Linie */
+    stroke-dashoffset: 1000; /* Linie ausblenden */
+    animation: shootingStar 3s linear forwards; /* Langsame Animation */
+    animation-delay: 5s;
+    stroke-linecap: round;
+  }
+  @keyframes shootingStar {
+    0% {
+      stroke-dashoffset: 1000; /* Linie ausblenden (Startposition) */
+      stroke-width: 0; /* Anfangsbreite */
+    }
+    100% {
+      stroke-dashoffset: 0; /* Linie anzeigen (Endposition) */
+      stroke-width: 15; /* Endbreite */
+    }
+  }
+  .sparkle {
+    fill: #FFF;
+    opacity: 0;
+    animation: sparkle 2s infinite alternate;
+    animation-delay: 8s;
+  }
+  @keyframes sparkle {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div style="background-color: #000; width: 35%; height: 50vh; float: left">
+    <a href="http://127.0.0.1:8050">
+        <svg id="netflix-logo" viewBox="0 0 1000 1000"> <!-- Größe des viewBox erhöhen -->
+            <path class="line" id="line1" d="M200,870 L200,130" stroke-linecap="square"></path> <!-- Koordinaten entsprechend anpassen -->
+            <path class="line" id="line2" d="M210,103 L690,897" stroke-linecap="butt" style="opacity: 0;"></path> <!-- Koordinaten entsprechend anpassen -->
+            <path class="line" id="line3" d="M700,870 L700,130" stroke-linecap="square" style="opacity: 0;"></path> <!-- Koordinaten entsprechend anpassen -->
+        </svg>
+    </a>
+</div>
+
+<div style="background-color: #000; width: 35%; height: 50vh; float: right">
+    <svg id="disney-logo" viewBox="0 0 1000 1000">
+    <!-- Shooting star path -->
+    <path class="shooting-star" id= "shootingstar" d="M1500,500 Q900,250 150,500"></path>
+    <!-- Sparkles -->
+    <circle class="sparkle" cx="520" cy="405" r="15"></circle>
+    <!-- Bild -->
+    <a href="http://127.0.0.1:8050">
+        <image xlink:href="/Users/student/Desktop/vergleich_Netflix_Disney/4_HTML_Animation/IMG_3097.jpg" x="100" y="200" width="1500" height="1200" />
+    </a>
+    </svg>
+</div>
+
+<script>
+  const line1 = document.getElementById('line1');
+  const line2 = document.getElementById('line2');
+  const line3 = document.getElementById('line3');
+  
+  // Start animation for line 1
+  animateLine(line1, 5, () => {
+    // Start animation for line 2 after line 1 completes
+    animateLine(line2, 5, () => {
+      // Start animation for line 3 after line 2 completes
+      animateLine(line3, 5, () => {
+         // Make line 3 visible
+      });
+    });
+  });
+
+  // Animate line function
+  function animateLine(line, duration, callback) {
+    let start = 0;
+    const end = 1000;
+    const increment = 1;
+    const interval = duration / ((end - start) / increment);
+    
+    const animation = setInterval(() => {
+      if (start >= end) {
+        clearInterval(animation);
+        if (callback) callback();
+      }
+      else {
+        start += increment;
+        line.style.strokeDasharray = `${start} 1000`;
+      }
+    }, interval);
+    
+    // Make line visible when animation starts
+    line.style.opacity = '1';
+  }
+
+
+</script>
+
+</body>
+</html>
