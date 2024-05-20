@@ -24,8 +24,7 @@ Ein paar zusätzliche Anmerkungen zum Aufbau der Repo:
 - In 3_Visualisierung finden Sie die 5 Visualisierungen separat. Figur1 und Figur 2 wurden nur mit Plotly.graph_objects erstellt, - Figur3, Figur4 und Figur5 sind jeweils ein eigenes Dashboard.
 - In 4_HTML_Animation können Sie die finale HTML-Datei finden, die die Einleitung/Deckblatt des Dashboards ist. Daneben befindet sich auch das dazugehörige Bild im Ordner.
 - In 5_Dashboard finden Sie die Python-Datei, die das Dashboard ausführt.
-- In 6_Video wurde auch das aufgenommene Bildschirmvideo zur Sicherheit hinzugefügt.
-Anschließend finden Sie in 7_Screenshoots die Screenshots über das Dashboard.
+- Anschließend finden Sie in 7_Screenshoots die Screenshots über das Dashboard.
 
 Danach wünsche ich Ihnen viel Spaß!
 
@@ -55,7 +54,6 @@ A few additional notes on the structure of the repo:
 - In "3_Visualization," you'll find the 5 visualizations separately. Figur1 and Figur 2 were made using only Plotly.graph_objects, Figur3, Figur4, and Figur5 are each their own dashboard.
 - In "4_HTML_Animation," you can find the final HTML file, which serves as the introduction/cover of the dashboard. Additionally, the corresponding image is also located in the folder.
 - In "5_Dashboard," you will find the Python file that executes the dashboard.
-- "6_Video" contains the recorded screen video for security purposes.
 - Lastly, in "7_Screenshoots," you will find screenshots of the dashboard.
 
 Afterwards, I wish you much enjoyment!
